@@ -1,4 +1,5 @@
 # 📋 Liver SWE Change Calculator
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://swe-change-calculator.streamlit.app/)
 
 **A research-based calculator for assessing longitudinal liver stiffness changes after Kasai portoenterostomy (KPE), accounting for ultrasound system and transducer variability.**
 
