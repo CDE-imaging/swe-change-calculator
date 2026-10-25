@@ -182,12 +182,33 @@ with st.container(border=True):
         yaxis=dict(range=[-.58,1.27],visible=False,fixedrange=True))
     st.plotly_chart(fig,use_container_width=True,
                     config={"displayModeBar":False,"staticPlot":True})
-    
+
     st.markdown(
-        "<div style='text-align:center;color:#6d83a2;font-size:.86rem;margin-top:-16px;margin-bottom:18px'>Bias-adjusted longitudinal change (kPa)</div>",
+        """
+        <div style="
+            display:flex;
+            justify-content:center;
+            gap:18px;
+            flex-wrap:wrap;
+            font-size:0.78rem;
+            color:#6d83a2;
+            margin-top:-10px;
+            margin-bottom:14px;
+            text-align:center;
+        ">
+            <span>↓ Decreased stiffness</span>
+            <span>● Within measurement variability</span>
+            <span>↑ Increased stiffness</span>
+        </div>
+        """,
         unsafe_allow_html=True
     )
-
+    
+    # st.markdown(
+    #     "<div style='text-align:center;color:#6d83a2;font-size:.86rem;margin-top:-16px;margin-bottom:18px'>Bias-adjusted longitudinal change (kPa)</div>",
+    #     unsafe_allow_html=True
+    # )
+    
     if exceeds:
         st.markdown("""
         <div style="
