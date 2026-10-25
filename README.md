@@ -1,4 +1,4 @@
-# 🩺 Liver SWE Change Calculator
+# 📋 Liver SWE Change Calculator
 
 **A research-based calculator for assessing longitudinal liver stiffness changes after Kasai portoenterostomy (KPE), accounting for ultrasound system and transducer variability.**
 
