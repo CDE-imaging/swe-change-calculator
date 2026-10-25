@@ -92,10 +92,24 @@ with st.container(border=True):
     c1.metric("Observed change",f"{observed:+.2f} kPa",help="Follow-up minus baseline")
     c2.metric("Equipment bias",f"{bias:+.2f} kPa",help="Difference in fitted equipment effects")
     c3.metric("Bias-adjusted change",f"{adjusted:+.2f} kPa",help="Observed change minus equipment bias")
-    st.markdown("""<div style="display:flex;justify-content:space-between;align-items:center;gap:14px;margin:18px 0 0">
-      <div class="result-title" style="margin:0">ⓘ &nbsp; Adjusted SWE change vs. MDC<sub>95</sub></div>
-      <div style="font-size:.91rem;color:#587094">MDC<sub>95</sub> = ±4.41 kPa</div>
-    </div>""",unsafe_allow_html=True)
+
+    st.markdown(
+    """
+    <div style="margin:18px 0 0;">
+        <div class="result-title">
+            ⓘ &nbsp; Adjusted SWE change vs. MDC<sub>95</sub>
+        </div>
+        <div style="font-size:.88rem;color:#587094;margin-top:4px;">
+            MDC<sub>95</sub> = ±4.41 kPa
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True)
+    
+    # st.markdown("""<div style="display:flex;justify-content:space-between;align-items:center;gap:14px;margin:18px 0 0">
+    #   <div class="result-title" style="margin:0">ⓘ &nbsp; Adjusted SWE change vs. MDC<sub>95</sub></div>
+    #   <div style="font-size:.91rem;color:#587094">MDC<sub>95</sub> = ±4.41 kPa</div>
+    # </div>""",unsafe_allow_html=True)
 
     # Keep a consistent ±10 kPa scale for ordinary values; expand symmetrically
     # when the result is outside that range.
@@ -126,14 +140,31 @@ with st.container(border=True):
                            showarrow=False,font=dict(size=12,color="#17375f"),
                            bgcolor="#f5f8fc",borderpad=1)
     # Three balanced headings, matching the reference figure.
-    outer=(lim+MDC95)/2
-    for x,label,color in [
-        (-outer,"&gt; Measurement variability<br>(decreased stiffness)","#d85b2f"),
-        (0,"Within measurement variability","#00765d"),
-        (outer,"&gt; Measurement variability<br>(increased stiffness)","#d85b2f")
+
+    outer = (lim + MDC95) / 2
+    for x, label, color in [
+        (-outer, "Decreased", "#d85b2f"),
+        (0, "Within MDC₉₅", "#00765d"),
+        (outer, "Increased", "#d85b2f")
     ]:
-        fig.add_annotation(x=x,y=0.98,text=label,showarrow=False,
-                           align="center",font=dict(size=12,color=color))
+        fig.add_annotation(
+            x=x,
+            y=0.98,
+            text=f"<b>{label}</b>",
+            showarrow=False,
+            align="center",
+            font=dict(size=11, color=color)
+        )
+
+    # outer=(lim+MDC95)/2
+    # for x,label,color in [
+    #     (-outer,"&gt; Measurement variability<br>(decreased stiffness)","#d85b2f"),
+    #     (0,"Within measurement variability","#00765d"),
+    #     (outer,"&gt; Measurement variability<br>(increased stiffness)","#d85b2f")
+    # ]:
+    #     fig.add_annotation(x=x,y=0.98,text=label,showarrow=False,
+    #                        align="center",font=dict(size=12,color=color))
+        
     # Marker, short vertical stem and a green/amber floating label.
     fig.add_shape(type="line",x0=adjusted,x1=adjusted,y0=0,y1=0.52,
                   line=dict(color=accent,width=2.5))
